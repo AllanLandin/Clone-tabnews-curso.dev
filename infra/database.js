@@ -1,4 +1,3 @@
-import { handleWebpackExternalForEdgeRuntime } from "next/dist/build/webpack/plugins/middleware-plugin";
 import { Client } from "pg";
 
 async function query(queryObj) {
@@ -8,6 +7,7 @@ async function query(queryObj) {
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
+    ssl: process.env.NODE_ENV === "development" ? false : true,
   });
   try {
     await client.connect();
