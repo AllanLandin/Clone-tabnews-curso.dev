@@ -1,6 +1,10 @@
 import database from "infra/database";
+import oschestrator from "../oschestrator";
 
-beforeAll(cleanDatabase);
+beforeAll(async () => {
+  await cleanDatabase();
+  await oschestrator.waitForAllServices();
+});
 
 async function cleanDatabase() {
   await database.query("drop schema public cascade; create schema public;");
