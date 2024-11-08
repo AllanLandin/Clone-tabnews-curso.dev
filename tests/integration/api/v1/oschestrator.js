@@ -4,7 +4,7 @@ async function waitForAllServices() {
   await waitForWebService();
 
   async function waitForWebService() {
-    // retry will run until a valid json as input
+    // retry will run until a valid json
     return retry(fetchStatusPage, {
       retries: 100,
       maxTimeout: 1000,
