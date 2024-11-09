@@ -15,6 +15,7 @@ test("POST to /api/v1/migrations should return 200", async () => {
     method: "POST",
   });
   const firstResponseBody = await firstResponse.json();
+  console.log(firstResponse.status);
   expect(firstResponse.status).toBe(201);
   expect(firstResponseBody.length).toBeGreaterThan(0);
 
@@ -22,6 +23,7 @@ test("POST to /api/v1/migrations should return 200", async () => {
     method: "POST",
   });
   const lastResponseBody = await lastResponse.json();
+  console.log(lastResponse.status);
   expect(lastResponse.status).toBe(200);
   expect(lastResponseBody.length).toBe(0);
 
