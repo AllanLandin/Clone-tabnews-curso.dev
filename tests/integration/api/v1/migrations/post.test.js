@@ -7,7 +7,9 @@ beforeAll(async () => {
 });
 
 async function cleanDatabase() {
-  await database.query("drop schema public cascade; create schema public;");
+  await database.query(
+    "DROP SCHEMA public CASCADE; CREATE SCHEMA public; GRANT ALL ON SCHEMA public TO public;",
+  );
 }
 
 test("POST to /api/v1/migrations should return 200", async () => {
