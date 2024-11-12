@@ -1,5 +1,7 @@
-const dotenv = require("dotenv").config({ path: ".env.development" });
+const dotenv = require("dotenv");
 const nextJS = require("next/jest");
+
+dotenv.config({ path: ".env.development" });
 
 const createJestConfig = nextJS({
   dir: ".",

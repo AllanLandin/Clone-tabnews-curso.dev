@@ -3,8 +3,8 @@ import database from "infra/database";
 import oschestrator from "../oschestrator";
 
 beforeAll(async () => {
-  cleanDatabase();
   await oschestrator.waitForAllServices();
+  cleanDatabase();
 });
 
 async function cleanDatabase() {
