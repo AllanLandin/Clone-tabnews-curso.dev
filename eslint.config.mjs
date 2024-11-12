@@ -17,16 +17,25 @@ export default [
       ...pluginJs.configs.recommended.rules,
       ...pluginReact.configs.recommended.rules,
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
   },
   {
     languageOptions: {
       parser: babelParser,
       parserOptions: {
+        babelOptions: {
+          presets: ["@babel/preset-react"],
+        },
         ecmaVersion: 2020, // Define a versão ECMAScript
         sourceType: "module", // Permite módulos ES6
         ecmaFeatures: {
           jsx: true, // Habilita o suporte a JSX
         },
+        requireConfigFile: false,
       },
       globals: {
         ...globals.jest,
