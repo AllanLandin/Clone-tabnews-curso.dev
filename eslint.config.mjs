@@ -6,27 +6,29 @@ import babelParser from "@babel/eslint-parser";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
+  pluginJs.configs.recommended,
+  { ignores: ["**/.next/**"] },
   {
-    ignores: ["**/.next/**"],
     files: ["**/*.{js,mjs,cjs,jsx}", "**/*.test.js"],
     plugins: { jest: pluginJest, js: pluginJs, react: pluginReact },
     rules: {
-      "no-unused-vars": "warn",
-      "no-undef": "warn",
       ...pluginJest.configs.recommended.rules,
-      ...pluginJs.configs.recommended.rules,
       ...pluginReact.configs.recommended.rules,
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
   },
   {
     languageOptions: {
       parser: babelParser,
       parserOptions: {
-        ecmaVersion: 2020, // Define a versão ECMAScript
-        sourceType: "module", // Permite módulos ES6
-        ecmaFeatures: {
-          jsx: true, // Habilita o suporte a JSX
+        babelOptions: {
+          presets: ["@babel/preset-react"],
         },
+        requireConfigFile: false,
       },
       globals: {
         ...globals.jest,
